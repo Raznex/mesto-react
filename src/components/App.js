@@ -76,23 +76,6 @@ function App() {
                        className="popup__input popup__input_type_name"/>
                 <span id="change-new-avatar-error" className="popup__input-span"></span>
             </PopupWithForm>
-            <template id="card-add">
-                <article className="element">
-                    <div className="element__photocard">
-                        <img src="src/components/App#" alt="" className="element__image"/>
-                        <button name='popup-Card-delete' className="element__delete-button">
-                        </button>
-                    </div>
-                    <div className="element__vote">
-                        <h2 className="element__title">Card</h2>
-                        <div className="element__like">
-                            <button type="button" className="element__like-button">
-                            </button>
-                            <p className="element__counter">0</p>
-                        </div>
-                    </div>
-                </article>
-            </template>
         </div>
     );
 }
