@@ -3,18 +3,22 @@ import '../App.css';
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-import PopupWithForm from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm.js";
+import ImagePopup from "./ImagePopup.js";
+
 
 function App() {
 
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+    const [selectedCard, setSelectedCard] = React.useState('');
 
     function closeAllPopups () {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
+        setSelectedCard("");
     }
 
     return (
@@ -23,7 +27,8 @@ function App() {
             <Main
                 onEditAvatar={() => setIsEditAvatarPopupOpen(true)}
                 onEditProfile={() => setIsEditProfilePopupOpen(true)}
-                onAddPlace={() => setIsAddPlacePopupOpen(true)}/>
+                onAddPlace={() => setIsAddPlacePopupOpen(true)}
+                handleCardClick={() => setSelectedCard}/>
             <Footer/>
             <PopupWithForm name="edit-profile" className="profile-edit"
                            onClose={closeAllPopups}
@@ -76,6 +81,7 @@ function App() {
                        className="popup__input popup__input_type_name"/>
                 <span id="change-new-avatar-error" className="popup__input-span"></span>
             </PopupWithForm>
+            <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
         </div>
     );
 }
