@@ -1,6 +1,6 @@
 import React from "react";
 
-function CardTemplate(props) {
+function Card(props) {
     function handleClick() {
         props.onCardClick(props.card);
     }
@@ -25,4 +25,4 @@ return(
 )
 }
 
-export default CardTemplate;
+export default Card;

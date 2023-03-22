@@ -1,7 +1,7 @@
 import React from 'react';
 import {Api} from "../utils/Api.js";
 import {options} from "../utils/constant.js";
-import CardTemplate from './CardTemplate.js';
+import Card from './Card.js';
 
 function Main(props) {
     const [userName, setUserName] = React.useState('');
@@ -46,7 +46,7 @@ function Main(props) {
             <section className="elements">
                 {
                     cards.map((card) => {
-                        return <CardTemplate key={card.id} card={card} onCardClick={props.handleCardClick()}/>
+                        return <Card key={card.id} card={card} onCardClick={props.handleCardClick()}/>
                     })
                 }
             </section>
