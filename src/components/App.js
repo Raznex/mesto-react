@@ -12,13 +12,13 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState('');
+    const [selectedCard, setSelectedCard] = React.useState(null);
 
     function closeAllPopups () {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
-        setSelectedCard("");
+        setSelectedCard(null);
     }
 
     return (
@@ -81,7 +81,7 @@ function App() {
                        className="popup__input popup__input_type_name"/>
                 <span id="change-new-avatar-error" className="popup__input-span"></span>
             </PopupWithForm>
-            <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+            {selectedCard &&<ImagePopup card={selectedCard} onClose={closeAllPopups}/>}
         </div>
     );
 }

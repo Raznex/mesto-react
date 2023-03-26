@@ -3,7 +3,7 @@ import {Api} from "../utils/Api.js";
 import {options} from "../utils/constant.js";
 import Card from './Card.js';
 
-function Main(props) {
+function Main({onEditAvatar, onEditProfile, onAddPlace, handleCardClick}) {
     const [userName, setUserName] = React.useState('');
     const [userDescription, setUserDescription] = React.useState('');
     const [userAvatar, setUserAvatar] = React.useState('');
@@ -30,23 +30,23 @@ function Main(props) {
         <main className="content">
             <section className="profile">
                 <div className="profile__card">
-                    <button className="profile__container-avatar" type="button" onClick={props.onEditAvatar}>
+                    <button className="profile__container-avatar" type="button" onClick={onEditAvatar}>
                         <img className="profile__avatar" src={userAvatar} alt="Аватар" />
                     </button>
                     <div className="profile__profile-info">
                         <div className="profile__title">
                             <h1 className="profile__name">{userName}</h1>
-                            <button name='popup-edit-open' type="button" className="profile__edit-button" onClick={props.onEditProfile}></button>
+                            <button name='popup-edit-open' type="button" className="profile__edit-button" onClick={onEditProfile}></button>
                         </div>
                         <p className="profile__profession">{userDescription}</p>
                     </div>
                 </div>
-                <button name='popup-add-open' type="button" className="profile__add-button" onClick={props.onAddPlace}></button>
+                <button name='popup-add-open' type="button" className="profile__add-button" onClick={onAddPlace}></button>
             </section>
             <section className="elements">
                 {
                     cards.map((card) => {
-                        return <Card key={card.id} card={card} onCardClick={props.handleCardClick()}/>
+                        return <Card key={card.id} card={card} onCardClick={handleCardClick()}/>
                     })
                 }
             </section>
