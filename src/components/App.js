@@ -12,13 +12,13 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState(null);
+    const [selectedCard, setSelectedCard] = React.useState({});
 
-    function closeAllPopups () {
+    function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
-        setSelectedCard(null);
+        setSelectedCard({});
     }
 
     return (
@@ -49,11 +49,11 @@ function App() {
                       className="popup__input-span popup__input-span_type_profession"></span>
             </PopupWithForm>
             <PopupWithForm name="add-form"
-                 className="card-add"
-                 onClose={closeAllPopups}
-                 isOpen={isAddPlacePopupOpen}
-                 title='Новое место'
-                 submitText='Сохранить'>
+                           className="card-add"
+                           onClose={closeAllPopups}
+                           isOpen={isAddPlacePopupOpen}
+                           title='Новое место'
+                           submitText='Сохранить'>
                 >
                 <input name='cardName' id="add-name-input" type="text" placeholder="Название" minLength="2"
                        maxLength="30" required
@@ -64,24 +64,24 @@ function App() {
                 <span id="add-url-input-error" className="popup__input-span popup__input-span_type_profession"></span>
             </PopupWithForm>
             <PopupWithForm name="delete-card-form"
-                 className="delete-card"
-                 title='Вы уверены?'
-                 submitText='Да'
+                           className="delete-card"
+                           title='Вы уверены?'
+                           submitText='Да'
             >
             </PopupWithForm>
             <PopupWithForm name="new-avatar-form"
-                 className="new-avatar"
-                 onClose={closeAllPopups}
-                 isOpen={isEditAvatarPopupOpen}
-                 title='Обновить аватар'
-                 submitText='Сохранить'>
+                           className="new-avatar"
+                           onClose={closeAllPopups}
+                           isOpen={isEditAvatarPopupOpen}
+                           title='Обновить аватар'
+                           submitText='Сохранить'>
                 >
                 <input name='newAvatar' id="change-new-avatar" type="url" placeholder="Ссылка на картинку" minLength="2"
                        maxLength="infinity" required
                        className="popup__input popup__input_type_name"/>
                 <span id="change-new-avatar-error" className="popup__input-span"></span>
             </PopupWithForm>
-            {selectedCard &&<ImagePopup card={selectedCard} onClose={closeAllPopups}/>}
+            <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
         </div>
     );
 }
