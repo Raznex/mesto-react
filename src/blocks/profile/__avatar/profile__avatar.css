@@ -5,6 +5,7 @@
   border-radius: 50%;
   opacity: 1;
   transition: opacity 0.5s ease 0s;
+  padding: 0;
 }
 
 .profile__avatar:hover {
