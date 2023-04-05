@@ -31,7 +31,7 @@ function App() {
                 setCards(cards)
             }
         ).catch(console.log);
-    })
+    },[])
 
     function handleCardLike(card) {
         console.log(card)

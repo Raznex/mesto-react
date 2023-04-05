@@ -20,7 +20,6 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
                        onSubmit={handleSubmit}
                        title='Обновить аватар'
                        submitText='Сохранить'>
-            >
             <input name='newAvatar' id="change-new-avatar" type="url" placeholder="Ссылка на картинку"
                    minLength="2"
                    maxLength="infinity" required

@@ -19,7 +19,7 @@ function Card({card, onCardClick, onCardLike, onCardDelete}) {
         onCardDelete(card);
     }
 
-    return (<div id="card-add">
+    return (
             <article className="element">
                 <div className="element__photocard">
                     <img src={card.link} alt={card.name} className="element__image" onClick={handleClick}/>
@@ -36,7 +36,7 @@ function Card({card, onCardClick, onCardLike, onCardDelete}) {
                     </div>
                 </div>
             </article>
-        </div>)
+        )
 }
 
 export default Card;

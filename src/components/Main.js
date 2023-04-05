@@ -16,23 +16,23 @@ function Main({cards, onEditAvatar, onEditProfile, onAddPlace, handleCardClick, 
                         <div className="profile__title">
                             <h1 className="profile__name">{currentUser.name}</h1>
                             <button name='popup-edit-open' type="button" className="profile__edit-button"
-                                    onClick={onEditProfile}></button>
+                                    onClick={onEditProfile}/>
                         </div>
                         <p className="profile__profession">{currentUser.about}</p>
                     </div>
                 </div>
                 <button name='popup-add-open' type="button" className="profile__add-button"
-                        onClick={onAddPlace}></button>
+                        onClick={onAddPlace}/>
             </section>
             <section className="elements">
                 {
                     cards.map((card) => {
-                        return <Card
+                        return (<Card
                             key={card._id}
                             card={card}
                             onCardClick={handleCardClick()}
                             onCardLike={handleCardLike()}
-                            onCardDelete={handleDeleteClick()}/>
+                            onCardDelete={handleDeleteClick()}/>)
                     })
                 }
             </section>
