@@ -1,4 +1,4 @@
-function PopupWithForm({isOpen, name, onClose, title, children, submitText, onSubmit}) {
+function PopupWithForm({isOpen, name, onClose, title, children, submitText, onSubmit, isLoading}) {
     return (
         <div className={`popup popup_type_${name} ${isOpen && 'popup_is-opened'}`}   >
             <div className="popup__container">
@@ -14,7 +14,7 @@ function PopupWithForm({isOpen, name, onClose, title, children, submitText, onSu
                         className="popup__save"
                         name="submit"
                        defaultValue={submitText}>
-                        {submitText}
+                        {isLoading ? "Сохранение..." : submitText || "Сохранить"}
                     </button>
                 </form>
             </div>

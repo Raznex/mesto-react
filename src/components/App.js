@@ -21,7 +21,24 @@ function App() {
     const [selectedCard, setSelectedCard] = React.useState({});
     const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(false);
     const api = new Api(options)
+
+    const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link
+
+    React.useEffect(() => {
+        function closeByEscape(evt) {
+            if(evt.key === 'Escape') {
+                closeAllPopups();
+            }
+        }
+        if(isOpen) { // навешиваем только при открытии
+            document.addEventListener('keydown', closeByEscape);
+            return () => {
+                document.removeEventListener('keydown', closeByEscape);
+            }
+        }
+    }, [isOpen])
 
 
     React.useEffect(() => {
@@ -31,6 +48,7 @@ function App() {
                 setCards(cards)
             }
         ).catch(console.log);
+        // eslint-disable-next-line
     },[])
 
     function handleCardLike(card) {
@@ -69,6 +87,7 @@ function App() {
     }
 
     function handleUpdateUser(data) {
+        setIsLoading(true);
         api
             .editProfile(data)
             .then((data) => {
@@ -76,9 +95,11 @@ function App() {
                 closeAllPopups();
             })
             .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false));
     }
 
     function handleAddPlace(card) {
+        setIsLoading(true);
         api
             .createCard(card)
             .then((newCard) => {
@@ -86,9 +107,11 @@ function App() {
                 closeAllPopups();
             })
             .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false));
     }
 
     function handleUpdateAvatar(avatar) {
+        setIsLoading(true);
         api
             .changeAvatar(avatar)
             .then((data) => {
@@ -96,6 +119,7 @@ function App() {
                 closeAllPopups();
             })
             .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false));
     }
 
 
@@ -122,13 +146,16 @@ function App() {
                 <Footer/>
                 <EditProfilePopup isOpen={isEditProfilePopupOpen}
                                   onClose={closeAllPopups}
-                                  onUpdateUser={handleUpdateUser}/>
+                                  onUpdateUser={handleUpdateUser}
+                                  isLoading={isLoading}/>
                 <AddPlacePopup    isOpen={isAddPlacePopupOpen}
                                   onClose={closeAllPopups}
-                                  onAddPlace={handleAddPlace}/>
+                                  onAddPlace={handleAddPlace}
+                                  isLoading={isLoading}/>
                 <EditAvatarPopup isOpen={isEditAvatarPopupOpen}
                                  onClose={closeAllPopups}
-                                 onUpdateAvatar={handleUpdateAvatar}/>
+                                 onUpdateAvatar={handleUpdateAvatar}
+                                 isLoading={isLoading}/>
                 <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
                 <PopupWithForm name="delete-card-form"
                                className="delete-card"
